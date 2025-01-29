@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Example with Object and Array</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+  <div ng-controller="MyController">
+
+    <h1>{{ person.name }}'s Profile</h1>
+    <p><strong>Age:</strong> {{ person.age }}</p>
+    <p><strong>City:</strong> {{ person.city }}</p>
+
+    <h2>Hobbies</h2>
+    <ul>
+      <li ng-repeat="hobby in person.hobbies">{{ hobby }}</li>
+    </ul>
+
+    <h2>Add a Hobby</h2>
+    <input type="text" ng-model="newHobby" placeholder="Enter a new hobby">
+    <button ng-click="addHobby()">Add Hobby</button>
+
+    <h2>Friends</h2>
+    <ul>
+      <li ng-repeat="friend in friends">{{ friend }}</li>
+    </ul>
+
+    <h2>Add a Friend</h2>
+    <input type="text" ng-model="newFriend" placeholder="Enter a friend's name">
+    <button ng-click="addFriend()">Add Friend</button>
+
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.controller('MyController', function($scope) {
+      // Defining an object
+      $scope.person = {
+        name: 'John Doe',
+        age: 30,
+        city: 'New York',
+        hobbies: ['Reading', 'Swimming', 'Gaming']
+      };
+
+      // Defining an array
+      $scope.friends = ['Alice', 'Bob', 'Charlie'];
+
+      // Method to add a hobby
+      $scope.addHobby = function() {
+        if ($scope.newHobby) {
+          $scope.person.hobbies.push($scope.newHobby);
+          $scope.newHobby = ''; // Reset input field
+        }
+      };
+
+      // Method to add a friend
+      $scope.addFriend = function() {
+        if ($scope.newFriend) {
+          $scope.friends.push($scope.newFriend);
+          $scope.newFriend = ''; // Reset input field
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

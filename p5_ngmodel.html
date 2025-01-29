@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+      </script>
+</head>
+<body>
+
+    <div ng-app="">
+     
+        <p>Name : <input type="text"  name="username" ng-model="username"></p>
+        <p>Email : <input type="text"  name="useremail" ng-model="useremail"></p>
+       <p><input type="checkbox" ng-model="isChecked"> Checked: {{ isChecked }}</p>
+        <p>
+          Country : 
+          <select name="country" ng-model="country">
+               <option>Select Country</option>
+               <option value="INDIA">INDIA</option>
+               <option value="USA">USA</option>
+          </select>
+        </p>
+        <p>Gender : <input type="radio" value="Female" name="gender" ng-model="gender"/>Female<input type="radio" value="Male" name="gender" ng-model="gender"/>Male</p>
+        <p>Skill :: <input type="checkbox" name="checkbox" value="PHP" ng-model="PHP"/> PHP
+          <input type="checkbox" name="JAVASCRIPT" value="JAVASCRIPT" ng-model="JAVASCRIPT"/>JAVASCRIPT
+          <input type="checkbox" name="LARAVEL" value="LARAVEL" ng-model="LARAVEL"/>LARAVEL</p>
+
+          <br/>
+
+          <p>Name :: {{username}} </p>
+          <p>Email :: {{useremail}} </p>
+          <p>Country :: {{country}}</p>
+          <p>Gender :: {{gender}} </p>
+          <p>PHP - {{PHP}} , JAVASCRIPT - {{JAVASCRIPT}} , LARAVEL - {{LARAVEL}}</p>
+  
+    </div>
+    
+
+    
+</body>
+</html>

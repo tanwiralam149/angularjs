@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Intermediate Custom Service Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="MainController">
+
+    <h2>Simple Calculator Service</h2>
+    <input type="number" ng-model="num1" placeholder="Enter number 1">
+    <input type="number" ng-model="num2" placeholder="Enter number 2">
+    
+    <button ng-click="addNumbers()">Add</button>
+    <button ng-click="subtractNumbers()">Subtract</button>
+    <button ng-click="multiplyNumbers()">Multiply</button>
+    <button ng-click="divideNumbers()">Divide</button>
+    
+    <h3>Result: {{ result }}</h3>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        // Intermediate custom service that performs arithmetic operations
+        app.service('calculatorService', function() {
+            this.add = function(a, b) {
+                return a + b;
+            };
+            this.subtract = function(a, b) {
+                return a - b;
+            };
+            this.multiply = function(a, b) {
+                return a * b;
+            };
+            this.divide = function(a, b) {
+                return b !== 0 ? a / b : 'Cannot divide by zero';
+            };
+        });
+
+        app.controller('MainController', function($scope, calculatorService) {
+            $scope.addNumbers = function() {
+                $scope.result = calculatorService.add($scope.num1, $scope.num2);
+            };
+            $scope.subtractNumbers = function() {
+                $scope.result = calculatorService.subtract($scope.num1, $scope.num2);
+            };
+            $scope.multiplyNumbers = function() {
+                $scope.result = calculatorService.multiply($scope.num1, $scope.num2);
+            };
+            $scope.divideNumbers = function() {
+                $scope.result = calculatorService.divide($scope.num1, $scope.num2);
+            };
+        });
+    </script>
+
+</body>
+</html>

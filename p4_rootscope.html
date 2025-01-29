@@ -1,0 +1,42 @@
+<html>
+   <head>
+      <title>AngularJS First Application</title>
+
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+      </script>
+   </head>
+
+   
+   <body>
+      <h1>Root Scope</h1>
+      <div ng-app ="myApp">
+          <div ng-controller="firstController">
+            <p>Name <input type="text" ng-model="name" /></p>
+             <p>Hi :: {{name}} </p>.
+             <p>Message :: {{message}}</p>
+             <p>color :: {{color}}</p>
+             <p>Sum Call :: {{add(99,58)}}</p>
+          </div>
+          <h4>Out of Controller Scope</h4>
+          <p>Message :: {{message}}</p>
+          <p>color :: {{color}}</p>
+          <p>Sum Call :: {{add(999,58)}}</p>
+          
+      </div>
+
+      <script>
+        var app=angular.module('myApp',[]);
+        app.controller('firstController',function($scope){
+           $scope.name='Alam';
+           $scope.message='Message from Controller';
+        });
+        app.run(function($rootScope){
+            $rootScope.message='Message from Root Scope';
+            $rootScope.color='Red';
+            $rootScope.add=function(a,b){
+                return a+b;
+            }
+        })
+      </script>
+   </body>
+</html>

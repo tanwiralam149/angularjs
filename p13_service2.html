@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Custom Service Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+   
+</head>
+<body>
+    
+    <div class="container" ng-app="myApp" ng-controller="calculateCtrl">
+         <div class="row pt-50" style="padding-top: 200px;">
+             <div class="col-md-3">
+                <input type="number" class="form-control" name="num1" ng-model="num1" placeholder="First Number" />
+             </div>
+             <div class="col-md-3">
+                <input type="number" class="form-control" name="num2" ng-model="num2" placeholder="Second Number"/>
+             </div>
+             <div class="col-md-1">
+                <button class="btn btn-success" ng-click="addNumber()">Add</button>
+             </div>
+             <div class="col-md-1">
+                <button class="btn btn-success" ng-click="subsNumber()">Substract</button>
+             </div>
+             <div class="col-md-1">
+                <button class="btn btn-success" ng-click="multiNumber()">Multiply</button>
+             </div>
+             <div class="col-md-1">
+                <button class="btn btn-success" ng-click="divNumber()">Divide</button>
+             </div>
+         </div>
+
+
+         <div class="row pt-50" >
+            <div class="col-md-3">
+              
+            </div>
+            <div class="col-md-3">
+             
+            </div>
+            <div class="col-md-1">
+               {{addResult}}
+            </div>
+            <div class="col-md-1">
+                {{subsResult}}
+            </div>
+            <div class="col-md-1">
+                {{multiResult}}
+            </div>
+            <div class="col-md-1">
+                {{divResult}}
+            </div>
+        </div>
+
+         
+    </div>
+
+
+    <script>
+        var app=angular.module("myApp",[]);
+        app.service("calculateService",function(){
+            this.add=function(a,b){
+               return a + b;
+            };
+            this.multi=function(a,b){
+               return a * b;
+            };
+            this.subs=function(a,b){
+               return a  > b ? a-b : b -a;
+            };
+            this.div=function(a,b){
+               return b!==0 ? a / b : 'Divide not posssible';
+            };
+        });
+
+        app.controller("calculateCtrl",function($scope,calculateService){
+
+            $scope.addNumber=function(){
+                if($scope.num1 && $scope.num2){
+                    $scope.addResult=calculateService.add($scope.num1,$scope.num2);
+                }
+             
+            }
+            $scope.subsNumber=function(){
+                if($scope.num1 && $scope.num2){
+                   $scope.subsResult=calculateService.subs($scope.num1,$scope.num2);
+                } 
+            }
+            $scope.multiNumber=function(){
+                if($scope.num1 && $scope.num2){
+                    $scope.multiResult=calculateService.multi($scope.num1,$scope.num2);
+                }
+            }
+            $scope.divNumber=function(){
+                if($scope.num1 && $scope.num2){
+                $scope.divResult=calculateService.div($scope.num1,$scope.num2);
+                }
+            }
+            
+            
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+   <head>
+      <title>AngularJS First Application</title>
+
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+      </script>
+   </head>
+
+   
+   <body ng-app = "myApp">
+      <h1>Angularjs ng-model Directive</h1>
+    
+      <div ng-controller="myCtrl">
+         <!-- Name : <input ng-model="name" /> <br/>
+         City : <input ng-model="city" /><br/> -->
+        <h2> Name :: {{name}} And City :: {{city}} </h2> 
+
+        <ul>
+         <ol ng-repeat="x in color ">{{x}}</ol>
+        </ul>
+
+        {{getDetails()}}
+      </div>
+      
+      <script>
+         var app= angular.module('myApp',[]);
+         app.controller('myCtrl',function($scope){
+             $scope.name='John Deo';
+             $scope.city='Kolkata';
+             $scope.color=['Red','Green','Blue'];
+
+             $scope.getDetails=function(){
+                  return "Name :" + $scope.name + " City : " + $scope.city ;
+             };
+         });
+      </script>
+      
+   </body>
+</html>

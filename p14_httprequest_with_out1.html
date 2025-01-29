@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS HTTP Request Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+   
+</head>
+<body>
+
+
+      <div class="container" ng-app="myApp">
+        <div ng-controller="nameCtrl">
+
+        <!-- <div ng-controller="addCtrl"> -->
+            <h3>Response:</h3>
+            <pre>{{ response | json }}</pre>
+
+            <div class="row" style="margin-bottom: 30px;margin-top: 10px;;">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" name="name" ng-model="newUser.name" placeholder="Enter Name" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" name="email" ng-model="newUser.email" placeholder="Enter email" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" name="phone" ng-model="newUser.phone" placeholder="Enter phone" />
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-success" ng-click="addUser()">Add User</button>
+                </div>
+            </div>
+        <!-- </div> -->
+        
+            
+                
+            
+               <div class="row">
+               
+                <table class="table table-bordered">
+                      <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phoneno</th>
+                          <th>Address</th>
+                          <th>Company</th>
+                      </tr>
+   
+                      <tr ng-repeat="x in users ">
+                         <td>{{x.name}}</td>
+                         <td>{{x.email}}</td>
+                         <td>{{x.phone}}</td>
+                         <td>{{x.address.street + ' , '+ x.address.suite + ' ' +x.address.city + ' , ' +x.address.zipcode}}</td>
+                         <td>{{x.company.name}}</td>
+                      </tr>
+                </table> 
+               </div>
+             </div>
+        
+      </div>
+
+      <script>
+          var app=angular.module("myApp",[]);
+
+        //   app.controller("addCtrl",function($scope,$http){
+               
+        //   });
+         
+          app.controller("nameCtrl",function($scope,$http){
+
+            $scope.newUser={};
+                $scope.addUser=function(){
+                    $http.post("https://jsonplaceholder.typicode.com/users", $scope.newUser)
+                    .then(function(response){
+                        $scope.response=response.data;
+                    }).catch(function(error){
+                        console.error('Error adding users:', error);
+                    });
+                }
+
+               fetcData=function(){
+                    $http.get("https://jsonplaceholder.typicode.com/users")
+                    .then(function(response){
+                        $scope.users=response.data;
+                    }).catch(function(error){
+                        console.error('Error fetching users:', error);
+                    });
+               }
+               fetcData();
+          });
+      </script>
+</body>
+</html>
