@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-change Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="MainController">
+
+    <h2>ng-change Example with Input Field</h2>
+
+    <label>Enter Your Name:</label>
+    <input type="text" ng-model="username" ng-change="updateMessage()">
+    <p>{{ message }}</p>
+    <h2>Select a Fruit:</h2>
+
+    <select ng-model="selectedFruit" ng-change="updateFruitMessage()">
+        <option value="">-- Select --</option>
+        <option value="Apple">Apple</option>
+        <option value="Banana">Banana</option>
+        <option value="Cherry">Cherry</option>
+    </select>
+    
+  
+    <p>{{fruitMessage}}</p>
+
+    <h2>Subscribe to Newsletter</h2>
+
+    <label>
+        <input type="checkbox" ng-model="subscribed" ng-change="updateSubscription()">
+        Subscribe
+    </label>
+
+    <p>{{ subscriptionMessage }}</p>
+
+    <script>
+        var app = angular.module('myApp', []);
+        
+        app.controller('MainController', function($scope) {
+            $scope.message = "Start typing your name...";
+            
+            $scope.updateMessage = function() {
+                $scope.message = "Hello, " + $scope.username + "!";
+            };
+
+            $scope.fruitMessage = "Please select a fruit.";
+
+            $scope.updateFruitMessage = function() {
+                $scope.fruitMessage = "You selected: " + $scope.selectedFruit;
+            };
+
+
+            $scope.subscriptionMessage = "You are not subscribed.";
+
+            $scope.updateSubscription = function() {
+                $scope.subscriptionMessage = $scope.subscribed ? "You are subscribed!" : "You are not subscribed.";
+            };
+
+        });
+    </script>
+
+</body>
+</html>

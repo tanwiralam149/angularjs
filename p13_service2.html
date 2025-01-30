@@ -79,22 +79,30 @@
             $scope.addNumber=function(){
                 if($scope.num1 && $scope.num2){
                     $scope.addResult=calculateService.add($scope.num1,$scope.num2);
+                }else{
+                    alert('Enter a Valid number')
                 }
              
             }
             $scope.subsNumber=function(){
                 if($scope.num1 && $scope.num2){
                    $scope.subsResult=calculateService.subs($scope.num1,$scope.num2);
+                }else{
+                    alert('Enter a Valid number')
                 } 
             }
             $scope.multiNumber=function(){
                 if($scope.num1 && $scope.num2){
                     $scope.multiResult=calculateService.multi($scope.num1,$scope.num2);
+                }else{
+                    alert('Enter a Valid number')
                 }
             }
             $scope.divNumber=function(){
                 if($scope.num1 && $scope.num2){
                 $scope.divResult=calculateService.div($scope.num1,$scope.num2);
+                }else{
+                    alert('Enter a Valid number')
                 }
             }
             
